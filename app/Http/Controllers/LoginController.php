@@ -19,6 +19,7 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
+        // dd($request);
         if($this->loginService->login($request)){
         return redirect()->intended('/');
     }

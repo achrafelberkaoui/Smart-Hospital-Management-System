@@ -13,11 +13,12 @@
             Login
         </h2>
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login.post') }}">
+            @csrf
             <div class="mb-4">
                 <label class="text-white text-sm">Email</label>
                 <input type="email"
-                       class="w-full mt-1 p-3 rounded-lg bg-white/80"
+                       class="w-full mt-1 p-3 rounded-lg bg-white/80" name="email"
                        placeholder="email@example.com" value="{{ old('email') }}">
             @error('email')
             <p style="color:red">{{$message}}</p>
@@ -26,7 +27,7 @@
 
             <div class="mb-6">
                 <label class="text-white text-sm">Password</label>
-                <input type="password"
+                <input type="password" name="password"
                        class="w-full mt-1 p-3 rounded-lg bg-white/80"
                        placeholder="••••••••">
             </div>

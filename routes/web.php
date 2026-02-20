@@ -6,5 +6,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// require __DIR__."login.php";
-@include('auth\login.php');
+require __DIR__.'/auth/login.php';
+require __DIR__.'/admin/services.php';
