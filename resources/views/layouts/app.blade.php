@@ -15,10 +15,21 @@
 
         <div class="space-x-4">
             <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
+            @if(!Auth::user())
             <a href="/login" class="text-gray-600 hover:text-blue-600">Login</a>
             <a href="/register" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
                 Sign up
             </a>
+            @endif
+            @auth
+            <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                <button type="submit"
+                    class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+                    Logout
+                </button>
+            </form>
+            @endauth
         </div>
     </nav>
 
