@@ -10,13 +10,19 @@
             Smart Hospital Management System
         </h2>
         <p class="text-black-600 mb-6">
-            Manage patients, doctors, and appointments بسهولة واحترافية.
+            Manage patients, doctors, and appointments..
         </p>
-
+        @if(!Auth::user())
         <a href="/login"
            class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">
             Get Started
         </a>
+        @else
+        <a href="/dashbord"
+           class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">
+            My dashbord
+        </a>
+        @endif
     </div>
 </div>
 @endsection
