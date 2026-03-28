@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware(['auth'])->group(function () {
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+});
 require __DIR__.'/auth/auth.php';
 require __DIR__.'/admin/services.php';
+require __DIR__.'/admin/users.php';

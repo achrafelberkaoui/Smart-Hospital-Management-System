@@ -16,7 +16,7 @@ class RegisterService
             'email'=> $request->email,
             'password'=> Hash::make($request->password),
             'date_naissance'=> $request->birth_date,
-            'role' => 'reception'
+            'role' => 'user'
         ]);
 
         Auth::login($user);

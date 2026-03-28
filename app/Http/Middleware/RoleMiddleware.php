@@ -20,7 +20,7 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $roles): Response
     {
         $rolesArray = explode('|', $roles);
-        if(!$this->roleService->hasRole($request->user(), $rolesArray)){
+        if(!$request->user() || !$this->roleService->hasRole($request->user(), $rolesArray)){
             abort(403, 'Acces denied');
         }
         return $next($request);

@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
-use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
 
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::paginate(10);
         return view('patients.index',compact('patients'));
     }
 
@@ -40,7 +39,7 @@ class PatientController extends Controller
     }
 
 
-    public function update(Request $request, Patient $patient)
+    public function update(PatientRequest $request, Patient $patient)
     {
         $patient->update($request->validated());
         return redirect()->route('patients.index')->with('success', 'Patient Modifier avec succes');

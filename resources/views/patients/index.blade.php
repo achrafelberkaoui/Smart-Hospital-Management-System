@@ -43,6 +43,7 @@
                 </td>
             </tr>
             @endforeach
+            {{ $patients->links() }}
         </tbody>
     </table>
 </div>
