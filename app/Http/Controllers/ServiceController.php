@@ -37,6 +37,7 @@ class ServiceController extends Controller
         return redirect()->route('services.index')->with('success', 'sevice ajoute avec success');
     }
 
+<<<<<<< HEAD
     /**
      * Display the specified resource.
      */
@@ -47,6 +48,8 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+=======
+>>>>>>> 74167ef (ajout des seeders pour les services)
     public function edit(Request $request, Service $service)
     {
         return view('services.edit', compact('service'));
