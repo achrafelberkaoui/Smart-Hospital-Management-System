@@ -27,10 +27,6 @@ class ServiceController extends Controller
         return redirect()->route('services.index')->with('success', 'sevice ajoute avec success');
     }
 
-    public function show(Service $service)
-    {
-    }
-
     public function edit(Request $request, Service $service)
     {
         return view('services.edit', compact('service'));

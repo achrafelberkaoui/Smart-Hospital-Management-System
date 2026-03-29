@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+    
+    $this->call([
+        ServiceSeeder::class,
+    ]);
         // User::factory(10)->create();
        User::create([
         'name' => 'achraf',
@@ -28,7 +32,7 @@ class DatabaseSeeder extends Seeder
         'name' => 'hamza',
         'email' => 'hamza@gmail.com',
         'password' => Hash::make('hamza123'),
-        'role' => 'medecin',
+        'role' => 'doctor',
         'date_naissance' => '2001\10\05'
        ]);
        User::create([
