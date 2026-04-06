@@ -27,11 +27,6 @@ class PatientController extends Controller
         return redirect()->route('patients.index')->with('success', 'Patient ajoute avec succes');
     }
 
-    public function show(Patient $patient)
-    {
-        
-    }
-
 
     public function edit(Patient $patient)
     {

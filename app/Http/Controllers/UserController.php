@@ -13,10 +13,6 @@ class UserController extends Controller
         $users = User::with('services')->paginate(10);
         return view('users.index', compact('users'));
     }
-    public function show(string $id)
-    {
-        //
-    }
 
     public function edit(User $user)
     {
@@ -35,7 +31,6 @@ class UserController extends Controller
         $user->services()->sync($request->service ?? []);
         
         return redirect()->route('users.index')->with('success', 'User updated successfully');
-
 
     }
     public function destroy(User $user)
