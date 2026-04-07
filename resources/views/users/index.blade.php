@@ -27,7 +27,7 @@
                     <th class="p-3 text-left">Name</th>
                     <th class="p-3 text-left">Email</th>
                     <th class="p-3 text-left">Role</th>
-                    <th class="p-3 text-left">Services</th>
+                    <th class="p-3 text-left">Service</th>
                     <th class="p-3 text-center">Actions</th>
                 </tr>
             </thead>
@@ -58,12 +58,10 @@
                     </td>
 
                     <!-- SERVICES -->
-                    <td class="p-3">
-                        @foreach($user->services as $service)
-                            <span class="bg-gray-200 px-2 py-1 rounded text-xs">
-                                {{ $service->name }}
-                            </span>
-                        @endforeach
+                    <td class="p-3"> 
+                        <span class="bg-gray-200 px-2 py-1 rounded text-xs">
+                            {{ $user->service->name ?? 'No service' }}
+                        </span>
                     </td>
 
                     <!-- ACTIONS -->

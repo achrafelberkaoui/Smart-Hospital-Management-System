@@ -22,9 +22,10 @@ class UpadteAppointmentRequest extends FormRequest
         return [
             'patient_id' => 'required|exists:patients,id',
             'doctor_id' => 'required|exists:users,id',
+            'service_id' => 'nullable|exists:services,id',
             'date' => 'required|date',
             'time' => 'required',
-            'status' => 'required',
+            'status' => 'required|in:pending,confirmed,cancelled,completed',
         ];
     }
 }

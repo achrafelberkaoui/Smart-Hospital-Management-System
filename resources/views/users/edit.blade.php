@@ -50,17 +50,17 @@
             <div class="mb-5">
                 <p class="font-semibold mb-2">Services</p>
 
-                <div class="grid grid-cols-2 gap-2">
-                    @foreach($services as $service)
-                        <label class="flex items-center space-x-2 bg-gray-100 p-2 rounded hover:bg-gray-200">
-                            <input type="checkbox"
-                                   name="services[]"
-                                   value="{{ $service->id }}"
-                                   {{ $user->services->contains($service->id) ? 'checked' : '' }}>
-                            <span>{{ $service->name }}</span>
-                        </label>
-                    @endforeach
-                </div>
+<div class="grid grid-cols-2 gap-2">
+    @foreach($services as $service)
+        <label class="flex items-center space-x-2 bg-gray-100 p-2 rounded hover:bg-gray-200">
+            <input type="radio"
+                   name="service"
+                   value="{{ $service->id }}"
+                   {{ $user->service && $user->service->id == $service->id ? 'checked' : '' }}>
+            <span>{{ $service->name }}</span>
+        </label>
+    @endforeach
+</div>
             </div>
 
             <!-- ACTIONS -->

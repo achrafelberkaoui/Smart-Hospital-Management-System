@@ -59,7 +59,10 @@ class ApointmentController extends Controller
 
     public function destroy(Appointment $appointment)
     {
-        $appointment->delete();
+        $appointment->update(
+            ['status' => 'cancelled']
+        );
         return back()->with('success', 'Deleted');
     }
+    
 }

@@ -23,7 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'date_naissance'
+        'date_naissance',
+        'service_id'
 
     ];
 
@@ -49,8 +50,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function services()
+    public function service()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsTo(Service::class);
     }
 }

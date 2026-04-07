@@ -14,11 +14,11 @@
     <nav class="bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-<!-- Logo -->
-<a href="/" class="flex items-center text-2xl font-bold text-blue-600 gap-2">
-    <img src="{{ asset('images/logo.jfif') }}" alt="CHP Logo" class="h-10 w-10 object-contain">
-    <span>Smart Hospital</span>
-</a>
+            <!-- Logo -->
+            <a href="/" class="flex items-center text-2xl font-bold text-blue-600 gap-2">
+                <img src="{{ asset('images/logo.jfif') }}" alt="CHP Logo" class="h-10 w-10 object-contain">
+                <span>SHMS CHP</span>
+            </a>
 
             <!-- Links -->
             <div class="hidden md:flex items-center space-x-6">

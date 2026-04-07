@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('services')->paginate(10);
+        $users = User::with('service')->paginate(10);
         return view('users.index', compact('users'));
     }
 
@@ -25,10 +25,14 @@ class UserController extends Controller
         'name' => 'required',
         'email' => 'required|email',
         'role' => 'required|in:admin,doctor,infirmier,reception,user',
-        'services' => 'array'
+        'service' => 'required'
         ]);
-        $user->update($data);
-        $user->services()->sync($request->service ?? []);
+        $user->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'role' => $data['role'],
+            'service_id' => $data['service'],
+        ]);
         
         return redirect()->route('users.index')->with('success', 'User updated successfully');
 
