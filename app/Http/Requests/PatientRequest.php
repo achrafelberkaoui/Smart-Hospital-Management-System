@@ -24,7 +24,7 @@ class PatientRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'telephone'=> 'required|string|max:20',
-            'email'=> 'required|string|email|unique:patients,email'
+            'email' => 'required|email|unique:patients,email,'
         ];
     }
     public function message() : array
@@ -32,7 +32,7 @@ class PatientRequest extends FormRequest
         return [
             'name' => 'nom de patient obligatoire',
             'telephone'=> 'numero de telephone obligatoire',
-            'email'=> 'nullable|string|email|unique:patients,email'
+            'email.unique' => 'Email déjà utilisé'
         ];
     }
 }

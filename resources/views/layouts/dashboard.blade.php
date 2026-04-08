@@ -17,7 +17,7 @@
 
         <h2 class="text-2xl font-bold mb-8">
         <!-- Logo -->
-            <a href="/" class="flex items-center text-2xl font-bold text-blue-600 gap-2">
+            <a href="/" class="flex items-center text-2xl font-bold text-white-600 gap-2">
                 <img src="{{ asset('images/logo.jfif') }}" alt="CHP Logo" class="h-10 w-10 object-contain">
                 <span>SHMS CHP</span>
             </a>

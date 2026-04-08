@@ -26,10 +26,10 @@ class DashboardController extends Controller
 
     if ($user->role === 'doctor') {
         return view('appointment.dashboard', [
-        'total' => Appointment::count(),
-        'pending' => Appointment::where('status','pending')->count(),
-        'confirmed' => Appointment::where('status','confirmed')->count(),
-        'today' => Appointment::whereDate('date', Carbon::today())->count(),
+        'total' => Appointment::where('doctor_id', $user->id)->count(),
+        'pending' => Appointment::where('doctor_id', $user->id)->where('status','pending')->count(),
+        'confirmed' => Appointment::where('doctor_id', $user->id)->where('status','confirmed')->count(),
+        'today' => Appointment::where('doctor_id', $user->id)->whereDate('date', Carbon::today())->count(),
 
         'appointments' => Appointment::latest()->take(5)->get()
 
@@ -37,9 +37,13 @@ class DashboardController extends Controller
     }
 
     if ($user->role === 'reception') {
-        return view('dashboard.reception', [
-            'patients' => Patient::count(),
-            'appointments' => 0
+        return view('appointment.dashboard', [
+        'total' => Appointment::count(),
+        'pending' => Appointment::where('status','pending')->count(),
+        'confirmed' => Appointment::where('status','confirmed')->count(),
+        'today' => Appointment::whereDate('date', Carbon::today())->count(),
+
+        'appointments' => Appointment::latest()->take(5)->get()
         ]);
     }
 
