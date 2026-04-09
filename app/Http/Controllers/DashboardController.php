@@ -31,7 +31,7 @@ class DashboardController extends Controller
         'confirmed' => Appointment::where('doctor_id', $user->id)->where('status','confirmed')->count(),
         'today' => Appointment::where('doctor_id', $user->id)->whereDate('date', Carbon::today())->count(),
 
-        'appointments' => Appointment::latest()->take(5)->get()
+        'appointments' => Appointment::where('doctor_id', $user->id)->latest()->take(5)->get()
 
         ]);
     }
