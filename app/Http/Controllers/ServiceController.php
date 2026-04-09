@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Services\LogService;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -23,7 +24,8 @@ class ServiceController extends Controller
             'name'=> 'required|string|max:100'
         ]);
 
-        Service::create($request->only('name'));
+        $service = Service::create($request->only('name'));
+        LogService::record('create', 'Created Service Name '.$service->name);
         return redirect()->route('services.index')->with('success', 'sevice ajoute avec success');
     }
 
@@ -39,12 +41,14 @@ class ServiceController extends Controller
         ]);
 
         $service->update($request->only('name'));
+        LogService::record('update', 'Update Service Name '.$service->name);
         return redirect()->route('services.index')->with('success', 'service modifie avec success');
     }
 
     public function destroy(Service $service)
     {
         $service->delete();
+        LogService::record('delete', 'Delete Service Name '.$service->name);
         return redirect()->route('services.index')->with('success', 'service supprime avec success');
     }
 }

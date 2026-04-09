@@ -31,6 +31,10 @@
                 <a href="{{ route('services.index') }}" class="block hover:bg-blue-600 p-2 rounded">
                     Services
                 </a>
+
+                <a href="{{ route('logs.index') }}" class="block hover:bg-blue-600 p-2 rounded">
+                    Logs
+                </a>
             @endif
 
             @if(in_array(auth()->user()->role, ['admin','reception']))

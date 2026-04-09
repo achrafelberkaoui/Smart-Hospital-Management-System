@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
+use App\Services\LogService;
 
 class PatientController extends Controller
 {
@@ -23,15 +24,10 @@ class PatientController extends Controller
 
     public function store(PatientRequest $request)
     {
-        Patient::create($request->validated());
+        $patient = Patient::create($request->validated());
+        LogService::record('create', 'Created Patient Name '.$patient->name);
         return redirect()->route('patients.index')->with('success', 'Patient ajoute avec succes');
     }
-
-    public function show(Patient $patient)
-    {
-        
-    }
-
 
     public function edit(Patient $patient)
     {
@@ -42,6 +38,7 @@ class PatientController extends Controller
     public function update(PatientRequest $request, Patient $patient)
     {
         $patient->update($request->validated());
+        LogService::record('update', 'Update Patient Name '.$patient->name);
         return redirect()->route('patients.index')->with('success', 'Patient Modifier avec succes');
     }
 
@@ -49,6 +46,7 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         $patient->delete();
+        LogService::record('delete', 'Delete patient Name '.$patient->name);
         return redirect()->route('patients.index')->with('success', 'Patient supprime avec succes');
     }
 }
