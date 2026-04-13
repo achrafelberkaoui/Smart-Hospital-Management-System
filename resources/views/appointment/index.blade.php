@@ -34,8 +34,13 @@
 
 
     <!-- Table -->
+    <input 
+        type="text" 
+        id="searchInput"
+        placeholder="Search patient (name / id)..."
+        class="mb-4 w-full p-2 border rounded-lg"
+    />
     <div class="bg-white shadow rounded-xl overflow-hidden">
-
         <table class="w-full text-sm text-left">
             <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
                 <tr>
@@ -51,7 +56,9 @@
 
             <tbody>
                 @foreach($appointments as $appointment)
-                <tr class="border-t hover:bg-gray-50 transition">
+                    <tr class="border-t hover:bg-gray-50 transition"
+    data-name="{{ strtolower($appointment->patient->name) }}"
+    data-id="{{ $appointment->patient->id }}">
 
                     <td class="p-4 font-medium">
                         {{ $appointment->patient->name }}
@@ -120,5 +127,24 @@
     </div>
 
 </div>
+
+
+<script>
+document.getElementById('searchInput').addEventListener('input', function() {
+    let value = this.value.toLowerCase();
+    let rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        let name = row.getAttribute('data-name');
+        let id = row.getAttribute('data-id');
+        if(name.includes(value) || id.includes(value)){
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+
+        }
+
+    });
+});
+</script>
 
 @endsection
