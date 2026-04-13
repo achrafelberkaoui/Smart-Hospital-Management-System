@@ -7,6 +7,29 @@
     <form action="{{ route('patients.update', $patient) }}" method="POST">
         @csrf
         @method('PUT')
+@if(session('error'))
+    <p class="bg-red-100 text-red-700 p-2 rounded mb-2">
+        {{ session('error') }}
+    </p>
+@endif
+
+@if(session('success'))
+    <p class="bg-green-100 text-green-700 p-2 rounded mb-2">
+        {{ session('success') }}
+    </p>
+@endif
+
+
+@if($errors->any())
+    <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>• {{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
         <div class="mb-4">
             <label class="block font-semibold">Nom</label>
@@ -15,21 +38,15 @@
         </div>
 
         <div class="mb-4">
-            <label class="block font-semibold">Date de naissance</label>
-            <input type="date" name="date_naissance" class="border p-2 w-full rounded"
-                   value="{{ old('date_naissance', $patient->date_naissance) }}">
-        </div>
-
-        <div class="mb-4">
             <label class="block font-semibold">Téléphone</label>
-            <input type="text" name="phone" class="border p-2 w-full rounded"
-                   value="{{ old('phone', $patient->phone) }}">
+            <input type="text" name="telephone" class="border p-2 w-full rounded"
+                   value="{{ old('phone', $patient->telephone) }}">
         </div>
 
         <div class="mb-4">
-            <label class="block font-semibold">Adresse</label>
-            <input type="text" name="address" class="border p-2 w-full rounded"
-                   value="{{ old('address', $patient->address) }}">
+            <label class="block font-semibold">Email</label>
+            <input type="text" name="email" class="border p-2 w-full rounded"
+                   value="{{ old('email', $patient->email) }}">
         </div>
 
         <button class="bg-blue-600 text-white px-4 py-2 rounded">Mettre à jour</button>

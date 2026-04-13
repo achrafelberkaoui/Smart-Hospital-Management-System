@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -23,16 +25,25 @@ class DashboardController extends Controller
     }
 
     if ($user->role === 'doctor') {
-        return view('dashboard.doctor', [
-            'patients' => 0,
-            'appointments' => 0
+        return view('appointment.dashboard', [
+        'total' => Appointment::where('doctor_id', $user->id)->count(),
+        'pending' => Appointment::where('doctor_id', $user->id)->where('status','pending')->count(),
+        'confirmed' => Appointment::where('doctor_id', $user->id)->where('status','confirmed')->count(),
+        'today' => Appointment::where('doctor_id', $user->id)->whereDate('date', Carbon::today())->count(),
+
+        'appointments' => Appointment::where('doctor_id', $user->id)->latest()->take(5)->get()
+
         ]);
     }
 
     if ($user->role === 'reception') {
-        return view('dashboard.reception', [
-            'patients' => Patient::count(),
-            'appointments' => 0
+        return view('appointment.dashboard', [
+        'total' => Appointment::count(),
+        'pending' => Appointment::where('status','pending')->count(),
+        'confirmed' => Appointment::where('status','confirmed')->count(),
+        'today' => Appointment::whereDate('date', Carbon::today())->count(),
+
+        'appointments' => Appointment::latest()->take(5)->get()
         ]);
     }
 

@@ -15,7 +15,13 @@
     <!-- SIDEBAR -->
     <aside class="w-64 bg-blue-700 text-white p-6 hidden md:block">
 
-        <h2 class="text-2xl font-bold mb-8">🏥 SHMS</h2>
+        <h2 class="text-2xl font-bold mb-8">
+        <!-- Logo -->
+            <a href="/" class="flex items-center text-2xl font-bold text-white-600 gap-2">
+                <img src="{{ asset('images/logo.jfif') }}" alt="CHP Logo" class="h-10 w-10 object-contain">
+                <span>SHMS CHP</span>
+            </a>
+        </h2>
 
         <nav class="space-y-4">
 
@@ -43,7 +49,7 @@
                 </a>
             @endif
 
-            <a href="#" class="block hover:bg-blue-600 p-2 rounded">
+            <a href=" {{ route('appointments.index')}}" class="block hover:bg-blue-600 p-2 rounded">
                 Appointments
             </a>
 
