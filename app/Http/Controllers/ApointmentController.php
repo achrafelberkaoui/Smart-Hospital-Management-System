@@ -30,7 +30,6 @@ public function create()
     $doctors = User::where('role', 'doctor')->get();
     $services = Service::all();
 
-    // Slots horaires
     $startTime = Carbon::createFromTime(9, 0);
     $endTime = Carbon::createFromTime(17, 0);
     $slots = [];
@@ -59,7 +58,6 @@ public function edit(Appointment $appointment)
     $doctors = User::where('role', 'doctor')->get();
     $services = Service::all();
 
-    // Slots horaires
     $startTime = Carbon::createFromTime(9, 0);
     $endTime = Carbon::createFromTime(17, 0);
     $slots = [];
@@ -68,7 +66,6 @@ public function edit(Appointment $appointment)
         $startTime->addHour();
     }
 
-    // Les rendez-vous déjà pris par ce docteur à cette date (sauf le rendez-vous en édition)
     $taken = Appointment::where('doctor_id', $appointment->doctor_id)
         ->where('date', $appointment->date)
         ->where('id', '!=', $appointment->id)

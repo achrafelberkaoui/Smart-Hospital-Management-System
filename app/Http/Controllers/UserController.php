@@ -21,6 +21,7 @@ class UserController extends Controller
     }
     public function update(Request $request, User $user)
     {
+        // dd('a');
         $data = $request->validate([
         'name' => 'required',
         'email' => 'required|email',
