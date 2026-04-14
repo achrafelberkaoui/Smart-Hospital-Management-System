@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
 <div class="bg-white p-6 rounded shadow w-1/2 mx-auto">
@@ -7,28 +7,28 @@
     <form action="{{ route('patients.update', $patient) }}" method="POST">
         @csrf
         @method('PUT')
-@if(session('error'))
-    <p class="bg-red-100 text-red-700 p-2 rounded mb-2">
-        {{ session('error') }}
-    </p>
-@endif
+            @if(session('error'))
+                <p class="bg-red-100 text-red-700 p-2 rounded mb-2">
+                    {{ session('error') }}
+                </p>
+            @endif
 
-@if(session('success'))
-    <p class="bg-green-100 text-green-700 p-2 rounded mb-2">
-        {{ session('success') }}
-    </p>
-@endif
+            @if(session('success'))
+                <p class="bg-green-100 text-green-700 p-2 rounded mb-2">
+                    {{ session('success') }}
+                </p>
+            @endif
 
 
-@if($errors->any())
-    <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>• {{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            @if($errors->any())
+                <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>• {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
 
         <div class="mb-4">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
 
@@ -33,11 +33,10 @@
         @endif
 
 
-    <!-- Table -->
     <input 
         type="text" 
         id="searchInput"
-        placeholder="Search patient (name / id)..."
+        placeholder="Search patient : name / id"
         class="mb-4 w-full p-2 border rounded-lg"
     />
     <div class="bg-white shadow rounded-xl overflow-hidden">
@@ -57,8 +56,8 @@
             <tbody>
                 @foreach($appointments as $appointment)
                     <tr class="border-t hover:bg-gray-50 transition"
-    data-name="{{ strtolower($appointment->patient->name) }}"
-    data-id="{{ $appointment->patient->id }}">
+                        data-name="{{ strtolower($appointment->patient->name) }}"
+                        data-id="{{ $appointment->patient->id }}">
 
                     <td class="p-4 font-medium">
                         {{ $appointment->patient->name }}

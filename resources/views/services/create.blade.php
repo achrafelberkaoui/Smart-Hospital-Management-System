@@ -6,7 +6,7 @@
     <div class="bg-white p-6 rounded-xl shadow">
 
         <h2 class="text-2xl font-bold text-blue-600 mb-6">
-            ➕ Ajouter Service
+            Ajouter Service
         </h2>
 
         <form action="{{ route('services.store') }}" method="POST">

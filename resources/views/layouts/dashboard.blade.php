@@ -43,15 +43,16 @@
                 </a>
             @endif
 
-            @if(in_array(auth()->user()->role, ['admin','reception']))
+            @if(in_array(auth()->user()->role, ['doctor','reception']))
                 <a href="{{ route('patients.index') }}" class="block hover:bg-blue-600 p-2 rounded">
                     Patients
                 </a>
-            @endif
+
 
             <a href=" {{ route('appointments.index')}}" class="block hover:bg-blue-600 p-2 rounded">
                 Appointments
             </a>
+            @endif
 
         </nav>
 

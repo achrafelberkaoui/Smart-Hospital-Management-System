@@ -7,9 +7,7 @@
         Admin Dashboard
     </h2>
 
-    <!-- Stats -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-
         <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
             <h3 class="text-gray-500 text-sm">Patients</h3>
             <p class="text-3xl font-bold text-blue-600 mt-2">
@@ -30,7 +28,6 @@
                 {{ $services }}
             </p>
         </div>
-
         <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
             <h3 class="text-gray-500 text-sm">Appointments</h3>
             <p class="text-3xl font-bold text-red-600 mt-2">
@@ -47,7 +44,6 @@
 
     </div>
 
-    <!-- Actions -->
     <div class="mt-10 grid md:grid-cols-4 gap-6">
 
         <a href="{{ route('patients.index') }}"

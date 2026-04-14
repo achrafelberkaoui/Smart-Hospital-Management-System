@@ -6,7 +6,7 @@
     <div class="bg-white p-6 rounded-xl shadow">
 
         <h2 class="text-2xl font-bold text-yellow-500 mb-6">
-            ✏️ Modifier Service
+            Modifier Service
         </h2>
 
         <form action="{{ route('services.update', $service) }}" method="POST">

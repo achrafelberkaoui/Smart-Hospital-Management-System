@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApointmentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::middleware(['auth','role:doctor|reception'])->group(function(){
     Route::resource('appointments', ApointmentController::class);
 });
+Route::middleware(['auth', 'role:admin|reception|doctor|infirmier'])->resource('patients', PatientController::class);
 
 require __DIR__.'/auth/auth.php';
 require __DIR__.'/admin/services.php';
