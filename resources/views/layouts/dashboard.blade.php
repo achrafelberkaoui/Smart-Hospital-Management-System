@@ -53,6 +53,11 @@
                 Appointments
             </a>
             @endif
+            @if(auth()->user()->role === 'doctor')
+                <a href="{{ route('doctor.planning') }}" class="block hover:bg-blue-600 p-2 rounded">
+                    Planning
+                </a>
+            @endif
 
         </nav>
 

@@ -22,7 +22,7 @@ class AppointmentRequest extends FormRequest
         return [
             'patient_id' => 'required|exists:patients,id',
             'doctor_id' => 'required|exists:users,id',
-            'date' => 'required|date',
+            'date' => 'required|date|after:today',
             'time' => 'required',
             'service_id' => 'nullable|exists:services,id',
         ];

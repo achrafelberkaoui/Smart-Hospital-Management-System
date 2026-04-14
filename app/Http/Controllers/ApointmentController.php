@@ -93,4 +93,18 @@ public function edit(Appointment $appointment)
         return back()->with('success', 'Deleted');
     }
     
+public function planning()
+{
+    $doctorId = auth()->id();
+
+    $appointments = Appointment::with('patient')
+        ->where('doctor_id', $doctorId)
+        ->whereDate('date', '>=', now())
+        ->orderBy('date')
+        ->orderBy('time')
+        ->get();
+
+    return view('appointment.planning', compact('appointments'));
+}
+    
 }
