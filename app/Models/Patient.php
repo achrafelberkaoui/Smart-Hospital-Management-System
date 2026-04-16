@@ -11,4 +11,9 @@ class Patient extends Model
         'email',
         'telephone'
     ];
+
+    public function dossierMedical()
+    {
+        return $this->hasOne(DossierMedical::class);
+    }
 }

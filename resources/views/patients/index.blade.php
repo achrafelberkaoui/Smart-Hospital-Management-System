@@ -29,6 +29,8 @@
                 <th class="px-4 py-2 border">Telephone</th>
                 @if(auth()->user()->role !== 'doctor')
                 <th class="px-4 py-2 border">Actions</th>
+                @else
+                <th class="px-4 py-2 border">Dossier</th>
                 @endif
             </tr>
         </thead>
@@ -53,6 +55,19 @@
                                 onclick="return confirm('Supprimer ?')">Supprimer</button>
                     </form>
                 </td>
+                @else
+                    <td class="border px-4 py-2 space-x-2">
+                    @if($patient->dossierMedical)
+                        <a href="{{ route('dossier.show', $patient->id) }}"
+                           class="bg-green-500 text-white px-3 py-1 rounded">
+                           Voir
+                        </a>
+                    @else
+                        <a href="{{ route('dossier.show', $patient) }}"
+                           class="bg-blue-500 text-white px-3 py-1 rounded">
+                           Créer
+                        </a>
+                    @endif
                 @endif
             </tr>
             @endforeach
