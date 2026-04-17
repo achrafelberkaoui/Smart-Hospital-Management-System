@@ -3,7 +3,7 @@
 @section('content')
 <div class="bg-white p-6 rounded shadow">
     <h2 class="text-2xl font-bold mb-4">Liste des Patients</h2>
-    @if(auth()->user()->role !== 'doctor')
+    @if(in_array(auth()->user()->role, ['admin','reception']))
     <a href="{{ route('patients.create') }}"
        class="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">
        Ajouter Patient
@@ -27,7 +27,7 @@
                 <th class="px-4 py-2 border">Nom</th>
                 <th class="px-4 py-2 border">Email</th>
                 <th class="px-4 py-2 border">Telephone</th>
-                @if(auth()->user()->role !== 'doctor')
+                @if(in_array(auth()->user()->role, ['admin','reception']))
                 <th class="px-4 py-2 border">Actions</th>
                 @else
                 <th class="px-4 py-2 border">Dossier</th>
@@ -43,7 +43,7 @@
                 <td class="border px-4 py-2">{{ $patient->name }}</td>
                 <td class="border px-4 py-2">{{ $patient->email }}</td>
                 <td class="border px-4 py-2">{{ $patient->telephone }}</td>
-                @if(auth()->user()->role !== 'doctor')
+                @if(in_array(auth()->user()->role, ['admin','reception']))
                 <td class="border px-4 py-2 space-x-2">
                     <a href="{{ route('patients.edit', $patient) }}" 
                        class="bg-yellow-400 text-white px-2 py-1 rounded">Modifier</a>

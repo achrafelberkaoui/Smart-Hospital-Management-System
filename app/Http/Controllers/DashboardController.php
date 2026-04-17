@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Observation;
 use App\Models\Patient;
 use App\Models\Service;
 use App\Models\User;
@@ -48,10 +49,17 @@ class DashboardController extends Controller
     }
 
     if ($user->role === 'infirmier') {
-        return view('dashboard.infirmier', [
-            'patients' => 0,
-            'services' => 0
-        ]);
+        $patients = Patient::whereHas('dossierMedical')->latest()->get();
+    return view('infirmier.dashboard',compact('patients'));
     }
+}
+
+public function observations()
+{
+    $observations = Observation::where('user_id', auth()->id())
+        ->latest()
+        ->get();
+
+    return view('infirmier.observations', compact('observations'));
 }
 }

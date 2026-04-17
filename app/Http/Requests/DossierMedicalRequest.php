@@ -9,7 +9,7 @@ class DossierMedicalRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+         return auth()->check() && auth()->user()->role === 'doctor';
     }
 
     /**
@@ -21,8 +21,8 @@ class DossierMedicalRequest extends FormRequest
     {
         return [
             'patient_id' => 'required|exists:patients,id',
-            'diagnostic' => 'required',
-            'traitement' => 'required',
+            'diagnostic' => 'required|string',
+            'traitement' => 'required|string',
         ];
     }
 }

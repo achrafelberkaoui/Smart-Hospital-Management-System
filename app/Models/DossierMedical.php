@@ -15,6 +15,10 @@ class DossierMedical extends Model
 
     public function patient()
     {
-    return $this->belongsTo(Patient::class);
+      return $this->belongsTo(Patient::class);
+    }
+    public function observations()
+    {
+     return $this->hasMany(Observation::class);
     }
 }

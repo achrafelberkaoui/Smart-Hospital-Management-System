@@ -28,6 +28,12 @@
             <a href="/dashboard" class="block hover:bg-blue-600 p-2 rounded">
                 Dashboard
             </a>
+            @if(auth()->user()->role === 'infirmier')
+            <a href="{{ route('infirmier.observations') }}" class="block hover:bg-blue-600 p-2 rounded">
+                Observations
+            </a>
+
+            @endif
 
             @if(auth()->user()->role === 'admin')
                 <a href="{{ route('users.index') }}" class="block hover:bg-blue-600 p-2 rounded">
@@ -43,15 +49,16 @@
                 </a>
             @endif
 
-            @if(in_array(auth()->user()->role, ['doctor','reception']))
+            @if(in_array(auth()->user()->role, ['doctor','reception','infirmier']))
                 <a href="{{ route('patients.index') }}" class="block hover:bg-blue-600 p-2 rounded">
                     Patients
                 </a>
 
-
+            @if(auth()->user()->role === 'doctor')
             <a href=" {{ route('appointments.index')}}" class="block hover:bg-blue-600 p-2 rounded">
                 Appointments
             </a>
+            @endif
             @endif
             @if(auth()->user()->role === 'doctor')
                 <a href="{{ route('doctor.planning') }}" class="block hover:bg-blue-600 p-2 rounded">

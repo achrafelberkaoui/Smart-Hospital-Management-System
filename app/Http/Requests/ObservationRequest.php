@@ -4,12 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AppointmentRequest extends FormRequest
+class ObservationRequest extends FormRequest
 {
-
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
-       return auth()->check() && auth()->user()->role === ['doctor', 'reception'];    
+               return auth()->check() && auth()->user()->role === 'infirmier';
     }
 
     /**
@@ -20,11 +22,10 @@ class AppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'patient_id' => 'required|exists:patients,id',
-            'doctor_id' => 'required|exists:users,id',
-            'date' => 'required|date|after:today',
-            'time' => 'required',
-            'service_id' => 'nullable|exists:services,id',
+        'dossier_medical_id' => 'required|exists:dossier_medicals,id',
+        'type' => 'nullable|string',
+        'value' => 'nullable',
+        'note' => 'nullable|string|max:500',
         ];
     }
 }
