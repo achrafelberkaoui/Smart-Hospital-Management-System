@@ -4,12 +4,13 @@
 
 <h1 class="text-2xl font-bold mb-6">Mes Observations</h1>
 
-@foreach($observations as $obs)
-<div class="bg-white p-4 mb-4 rounded-xl shadow hover:shadow-md transition">
+    @foreach($observations as $obs)
+    <div class="bg-white p-4 mb-4 rounded-xl shadow hover:shadow-md transition">
 
-    <div class="flex justify-between text-sm text-gray-500 mb-2">
-        <span>
-{{ $obs->dossier->patient->id ?? 'Unknown' }}        </span>
+        <div class="flex justify-between text-sm text-gray-500 mb-2">
+            <span>
+        {{ $obs->dossier->patient->id ??'Unknown' }}        
+        </span>
 
         <span>
             {{ $obs->created_at->format('d/m/Y H:i') }}
