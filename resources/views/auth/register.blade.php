@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
-
+<div class="min-h-screen flex items-center justify-center"
+     style="background-image: url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3');
+            background-size: cover;
+            background-position: center;">
     <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
         
         <h2 class="text-3xl font-bold text-center mb-6 text-blue-600">

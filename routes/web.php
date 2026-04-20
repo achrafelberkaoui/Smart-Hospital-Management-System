@@ -14,7 +14,7 @@ Route::middleware(['auth','role:admin|doctor|infirmier|reception'])->group(funct
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 Route::middleware(['auth','role:infirmier'])->group(function () {
-Route::get('/infirmier/observations', [DashboardController::class, 'observations'])->name('infirmier.observations');
+Route::get('/infirmier/observations', [ObservationController::class, 'observations'])->name('infirmier.observations');
 Route::post('/observations', [ObservationController::class, 'store'])->name('observations.store');
 });
 
@@ -23,7 +23,7 @@ Route::middleware(['auth','role:doctor|reception'])->group(function(){
 });
 Route::get('doctor/planning', [ApointmentController::class, 'planning'])->middleware(['auth', 'role:doctor'])->name('doctor.planning');
 
-Route::middleware(['auth', 'role:admin|reception|doctor|infirmier'])->resource('patients', PatientController::class);
+Route::middleware(['auth', 'role:reception|doctor|infirmier'])->resource('patients', PatientController::class);
 
 require __DIR__.'/auth/auth.php';
 require __DIR__.'/doctor/dossierMedi.php';

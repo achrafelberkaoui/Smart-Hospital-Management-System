@@ -77,13 +77,10 @@
             <input type="hidden" name="dossier_medical_id"
                    value="{{ $patient->dossierMedical->id }}">
 
-            <select name="type" class="w-full border p-2 rounded mb-2">
-                <option value="">Type</option>
-                <option value="temperature">Température</option>
-                <option value="tension">Tension</option>
-                <option value="douleur">Douleur</option>
-            </select>
-
+            <label for="type" class="text-lg font-bold mb-4">Type</label>
+            <input type="text" name="type" class="w-full border p-2 rounded mb-2" placeholder="Type">
+            
+            <label for="value" class="text-lg font-bold mb-4">Value</label>
             <input type="text" name="value" class="w-full border p-2 rounded mb-2" placeholder="Valeur">
             <textarea name="note" class="w-full border p-2 rounded mb-2" placeholder="Observation"></textarea>
 

@@ -9,6 +9,7 @@ class DossierMedical extends Model
     protected $fillable = [
         "patient_id",
         "doctor_id",
+        "service_id",
         "diagnostic",
         "traitement"
     ];
@@ -20,5 +21,9 @@ class DossierMedical extends Model
     public function observations()
     {
      return $this->hasMany(Observation::class);
+    }
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ObservationRequest;
+use App\Models\Observation;
 use App\Services\ObservationService;
 
 class ObservationController extends Controller
@@ -14,5 +15,14 @@ class ObservationController extends Controller
     {
         $this->service->create($request->validated());
         return back()->with('succes', 'observation ajoute');
+    }
+    public function observations()
+    {
+        $observations = Observation::with('dossier.patient')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+
+        return view('infirmier.observations', compact('observations'));
     }
 }

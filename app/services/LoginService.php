@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class LoginService
 {
-    public function login(Request $request): bool
+    public function login(LoginRequest $request): bool
     {
         $logUser = $request->only('email', 'password');
         if(Auth::attempt($logUser)){
