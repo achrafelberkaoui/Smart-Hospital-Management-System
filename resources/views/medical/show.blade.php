@@ -90,18 +90,6 @@
         </form 
         @endif
 
-
-
-
-
-
-
-
-
-
-
-
-
     
     @else
         <div class="bg-gray-100 p-4 rounded mb-4">

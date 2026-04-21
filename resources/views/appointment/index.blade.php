@@ -4,7 +4,6 @@
 
 <div class="p-6">
 
-    <!-- Header -->
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-800">Appointments</h1>
 
@@ -14,7 +13,6 @@
         </a>
     </div>
 
-        <!-- ERRORS -->
             @if(session('success'))
                 <div class="bg-green-100 text-green-700 p-3 rounded mb-4">{{ session('success') }}</div>
             @endif
@@ -79,7 +77,6 @@
                         {{ $appointment->time }}
                     </td>
 
-                    <!-- STATUS BADGE -->
                     <td class="p-4">
                         @if($appointment->status == 'pending')
                             <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">Pending</span>
@@ -91,8 +88,7 @@
                             <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">Completed</span>
                         @endif
                     </td>
-
-                    <!-- ACTIONS -->
+                    @if($appointment->status !== 'cancelled')
                     <td class="p-4 text-center space-x-2">
 
                         <a href="{{ route('appointments.edit', $appointment) }}"
@@ -112,6 +108,7 @@
                         </form>
 
                     </td>
+                    @endif
 
                 </tr>
                 @endforeach
@@ -120,7 +117,6 @@
 
     </div>
 
-    <!-- Pagination -->
     <div class="mt-4">
         {{ $appointments->links() }}
     </div>

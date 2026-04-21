@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Appointment;
+use App\Models\DossierMedical;
+use App\Models\Observation;
+use App\Models\Patient;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -42,5 +47,16 @@ class DatabaseSeeder extends Seeder
         'role' => 'infirmier',
         'date_naissance' => '2001\10\05'
        ]);
+    Service::factory(5)->create();
+    User::factory(10)->create();
+    Patient::factory(20)->create();
+    foreach (Patient::all() as $patient) {
+            DossierMedical::factory()->create([
+                'patient_id' => $patient->id,
+            ]);
+        }
+    Observation::factory(30)->create();
+    Appointment::factory(25)->create();
     }
+
 }

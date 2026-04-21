@@ -48,8 +48,12 @@ class DashboardController extends Controller
     }
 
     if ($user->role === 'infirmier') {
-        $patients = Patient::whereHas('dossierMedical')->latest()->get();
-    return view('infirmier.dashboard',compact('patients'));
+    $appointments = Appointment::with('patient.dossierMedical.service')
+    ->where('service_id', auth()->user()->service_id)->latest()->get()->unique('patient_id');        
+    $patients = Patient::whereHas('dossierMedical', function($q){
+            $q->where('service_id', auth()->user()->service_id);
+        })->with('dossierMedical')->get();
+    return view('infirmier.dashboard',compact('patients','appointments'));
     }
 }
 }

@@ -11,7 +11,7 @@ class ObservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-               return auth()->check() && auth()->user()->role === 'infirmier';
+       return in_array(auth()->user()->role, ['doctor','infirmier']);    
     }
 
     /**

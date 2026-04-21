@@ -38,7 +38,7 @@
                 <select name="patient_id" class="w-full border p-2 rounded-lg">
                     @foreach($patients as $patient)
                         <option value="{{ $patient->id }}"
-                            {{ $appointment->patient_id == $patient->id ? 'selected' : '' }}>
+                            {{ $appointment->patient_id == $patient->id ? 'selected':'' }}>
                             {{ $patient->name }}
                         </option>
                     @endforeach
@@ -46,37 +46,36 @@
             </div>
 
             <div>
-                @if(auth()->user()->role === 'doctor')
-                <label class="block mb-1 font-semibold text-gray-700">Doctor</label>
-                <select name="doctor_id" class="w-full border p-2 rounded-lg">
-                        <option value="{{ auth()->id() }}">
-                            {{ auth()->user()->name }}
-                        </option>
-                </select>
+                <select name="doctor_id" id="doctor_select" class="w-full border p-2 rounded-lg">
+
+            @if(auth()->user()->role === 'doctor')
+                    <option value="{{ auth()->id() }}"
+                        data-service="{{ auth()->user()->service_id }}"
+                        data-service-name="{{ auth()->user()->service->name }}">
+                        {{ auth()->user()->name }}
+                    </option>
                 @else
-                <label class="block mb-1 font-semibold text-gray-700">Doctor</label>
-                <select name="doctor_id" class="w-full border p-2 rounded-lg">
                     @foreach($doctors as $doctor)
-                        <option value="{{ $doctor->id }}">
+                        <option value="{{ $doctor->id }}"
+                            data-service="{{ $doctor->service_id }}"
+                            data-service-name="{{ $doctor->service->name }}"
+                            {{ old('doctor_id', $appointment->doctor_id ?? '') == $doctor->id ? 'selected' : '' }}>
                             {{ $doctor->name }}
                         </option>
                     @endforeach
-                </select>
+
                 @endif
+                </select>
             </div>
 
             <div>
-                <label class="block mb-1 font-semibold text-gray-700">Service</label>
-                <select name="service_id" class="w-full border p-2 rounded-lg">
-                    <option value="">-- Optional --</option>
-                    @foreach($services as $service)
-                        <option value="{{ $service->id }}"
-                            {{ $appointment->service_id == $service->id ? 'selected' : '' }}>
-                            {{ $service->name }}
-                        </option>
-                    @endforeach
-                </select>
+              <label class="block mb-1 font-semibold text-gray-700">Service</label>
+              <input type="text" id="service_name"
+                  class="w-full border p-2 rounded-lg bg-gray-100"
+                  readonly>            
             </div>
+                <input type="hidden" name="service_id" id="service_id">
+
 
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Date</label>
@@ -116,5 +115,18 @@
     </div>
 
 </div>
+
+<script>
+function updateService() {
+    let select= document.getElementById('doctor_select');
+    let selected = select.options[select.selectedIndex];
+    let serviceId = selected.getAttribute('data-service');
+    let serviceName= selected.getAttribute('data-service-name');
+    document.getElementById('service_id').value = serviceId;
+    document.getElementById('service_name').value = serviceName;
+}
+document.getElementById('doctor_select').addEventListener('change', updateService);
+updateService();
+</script>
 
 @endsection

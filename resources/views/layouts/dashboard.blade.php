@@ -54,7 +54,7 @@
                     Patients
                 </a>
 
-            @if(auth()->user()->role === 'doctor')
+            @if(auth()->user()->role === 'doctor' || auth()->user()->role === 'reception')
             <a href=" {{ route('appointments.index')}}" class="block hover:bg-blue-600 p-2 rounded">
                 Appointments
             </a>
@@ -84,6 +84,9 @@
 
                 <span class="bg-gray-200 px-2 py-1 rounded text-sm">
                     {{ auth()->user()->role }}
+                </span>
+                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs">
+                        {{ auth()->user()->service->name ?? 'aucun Service' }}
                 </span>
 
                 <form method="POST" action="{{ route('logout') }}">

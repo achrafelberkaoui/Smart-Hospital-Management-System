@@ -60,6 +60,9 @@
                     <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs">
                         {{ Auth::user()->role }}
                     </span>
+                <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs">
+                        {{ auth()->user()->service->name ?? 'aucun Service' }}
+                </span>
 
                     <!-- Logout -->
                     <form action="{{ route('logout') }}" method="POST">

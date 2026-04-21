@@ -9,7 +9,7 @@ class DossierMedicalRequest extends FormRequest
 
     public function authorize(): bool
     {
-         return auth()->check() && auth()->user()->role === 'doctor';
+       return in_array(auth()->user()->role, ['doctor', 'infirmier']);    
     }
 
     /**

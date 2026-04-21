@@ -18,7 +18,7 @@
     <input 
         type="text" 
         id="searchInput"
-        placeholder="Search patient : name / id"
+        placeholder="Search patient : name / id / service"
         class="mb-4 w-full p-2 border rounded-lg"
     />
         <thead>
@@ -38,7 +38,8 @@
             @foreach($patients as $patient)
                 <tr class="border-t hover:bg-gray-50 transition"
                 data-name="{{ strtolower($patient->name) }}"
-                data-id="{{ $patient->id }}">
+                data-id="{{ $patient->id }}"
+                data-serv="{{ $patient->dossierMedical->service->name ?? null}}">
                 <td class="border px-4 py-2">{{ $patient->id }}</td>
                 <td class="border px-4 py-2">{{ $patient->name }}</td>
                 <td class="border px-4 py-2">{{ $patient->email }}</td>
@@ -71,9 +72,9 @@
                 @endif
             </tr>
             @endforeach
-            {{ $patients->links() }}
         </tbody>
     </table>
+    {{ $patients->links() }}
 </div>
 
 <script>
@@ -83,7 +84,8 @@ document.getElementById('searchInput').addEventListener('input', function() {
     rows.forEach(row => {
         let name = row.getAttribute('data-name');
         let id = row.getAttribute('data-id');
-        if(name.includes(value) || id.includes(value)){
+        let serv = row.getAttribute('data-serv');
+        if(name.includes(value) || id.includes(value) || serv.includes(value)){
             row.style.display = '';
         } else {
             row.style.display = 'none';

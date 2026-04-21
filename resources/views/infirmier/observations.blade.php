@@ -9,7 +9,7 @@
 
         <div class="flex justify-between text-sm text-gray-500 mb-2">
             <span>
-        {{ $obs->dossier->patient->id ??'Unknown' }}        
+        {{ $obs->dossier->patient->name ??'Unknown' }}        
         </span>
 
         <span>

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Appointment;
+use App\Models\User;
 use Carbon\Carbon;
 
 class AppointmentService{
@@ -25,7 +26,7 @@ class AppointmentService{
         return Appointment::create([
             'patient_id' => $data['patient_id'],
             'doctor_id' => $data['doctor_id'],
-            'service_id' => $data['service_id'] ?? null,
+            'service_id' => User::find($data['doctor_id'])->service_id,
             'date' => $data['date'],
             'time' => $data['time'],
             'status' => 'pending',

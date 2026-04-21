@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ObservationRequest;
 use App\Models\Observation;
+use App\Models\User;
+use App\Services\LogService;
 use App\Services\ObservationService;
 
 class ObservationController extends Controller
@@ -13,16 +15,14 @@ class ObservationController extends Controller
     }
     public function store(ObservationRequest $request)
     {
-        $this->service->create($request->validated());
+        $observation = $this->service->create($request->validated());
+        LogService::record('create', 'Created Observation Name '.$observation->name);
         return back()->with('succes', 'observation ajoute');
     }
     public function observations()
     {
-        $observations = Observation::with('dossier.patient')
-            ->where('user_id', auth()->id())
-            ->latest()
-            ->get();
-
+    $observations = Observation::where('user_id', auth()->id())->latest()->get();
         return view('infirmier.observations', compact('observations'));
     }
+    
 }

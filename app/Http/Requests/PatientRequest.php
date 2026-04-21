@@ -11,7 +11,7 @@ class PatientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-       return auth()->check() && auth()->user()->role === 'reception';
+       return in_array(auth()->user()->role, ['doctor', 'reception','infirmier']);    
     }
 
     /**
