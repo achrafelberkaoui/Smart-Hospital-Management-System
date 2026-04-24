@@ -25,6 +25,7 @@ class AppointmentRequest extends FormRequest
             'date' => 'required|date|after:today',
             'time' => 'required',
             'service_id' => 'nullable|exists:services,id',
+            'status' => 'required|in:pending,confirmed,cancelled,completed',
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DossierMedicalRequest;
+use App\Models\Appointment;
 use App\Models\DossierMedical;
 use App\Models\Patient;
 use App\Services\DossierMedicalService;
@@ -31,9 +32,19 @@ class DossierMedicalController extends Controller
         if(auth()->user()->role !== 'doctor'){
             abort(403);
         }
-        $dossier = $this->dossierServ->create($request->validated());
-        LogService::record('create', 'Created dossier Name '.$dossier->name);
-        return back()->with('success', 'Dossier cree');
+        try {
+            $dossier = $this->dossierServ->create($request->validated());
+            Appointment::where('patient_id', $request->patient_id)->update(
+                [
+                    'status'=>'Completed'
+                ]
+            );
+            LogService::record('create', 'Created dossier Name '.$dossier->name);
+            return back()->with('success', 'Dossier cree');
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
     }
 
     public function show($patientId)

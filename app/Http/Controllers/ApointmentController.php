@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AppointmentRequest;
@@ -99,11 +98,8 @@ class ApointmentController extends Controller
         $doctorId = auth()->id();
     
         $appointments = Appointment::with('patient')
-            ->where('doctor_id', $doctorId)
-            ->whereDate('date', '>=', now())
-            ->orderBy('date')
-            ->orderBy('time')
-            ->get();
+            ->where('doctor_id', $doctorId)->whereDate('date', '>=', now())->orderBy('date')
+            ->orderBy('time')->get();
     
         return view('appointment.planning', compact('appointments'));
     }

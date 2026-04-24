@@ -44,19 +44,26 @@ class DatabaseSeeder extends Seeder
         'name' => 'simo',
         'email' => 'simo@gmail.com',
         'password' => Hash::make('simo123'),
+        'role' => 'reception',
+        'date_naissance' => '2001\10\05'
+       ]);
+       User::create([
+        'name' => 'rajae',
+        'email' => 'rajae@gmail.com',
+        'password' => Hash::make('rajae123'),
         'role' => 'infirmier',
         'date_naissance' => '2001\10\05'
        ]);
-    Service::factory(5)->create();
-    User::factory(10)->create();
-    Patient::factory(20)->create();
-    foreach (Patient::all() as $patient) {
-            DossierMedical::factory()->create([
-                'patient_id' => $patient->id,
-            ]);
-        }
-    Observation::factory(30)->create();
-    Appointment::factory(25)->create();
+    // Service::factory(5)->create();
+    // User::factory(10)->create();
+    // Patient::factory(20)->create();
+    // foreach (Patient::all() as $patient) {
+    //         DossierMedical::factory()->create([
+    //             'patient_id' => $patient->id,
+    //         ]);
+    //     }
+    // Observation::factory(30)->create();
+    // Appointment::factory(25)->create();
     }
 
 }

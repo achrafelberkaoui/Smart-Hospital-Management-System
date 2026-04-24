@@ -2,27 +2,33 @@
 
 namespace App\Services;
 
-use App\Http\Requests\DossierMedicalRequest;
+use App\Models\Appointment;
 use App\Models\DossierMedical;
+use Exception;
 
 class DossierMedicalService
 {
-    public function create(DossierMedicalRequest $request)
+    public function create(array $data)
     {
+        if(!Appointment::where('patient_id', $data['patient_id'])->first())
+            {
+                throw new Exception("Aucun rendez-vous");
+            };
+
         return DossierMedical::create([
-        'patient_id' => $request['patient_id'],
+        'patient_id' => $data['patient_id'],
         'doctor_id' => auth()->id(),
         'service_id' => auth()->user()->service_id,
-        'diagnostic' => $request['diagnostic'],
-        'traitement' => $request['traitement']
+        'diagnostic' => $data['diagnostic'],
+        'traitement' => $data['traitement']
         ]);
     }
 
-    public function update($dossier, DossierMedicalRequest $request)
+    public function update($dossier, array $data)
     {
         return $dossier->update([
-            'diagnostic' => $request['diagnostic'],
-             'traitement' => $request['traitement']
+            'diagnostic' => $data['diagnostic'],
+             'traitement' => $data['traitement']
         ]);
     }
 }

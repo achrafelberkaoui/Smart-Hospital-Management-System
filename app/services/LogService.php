@@ -12,7 +12,6 @@ class LogService{
             'user_id'=> auth()->id(),
             'action'=> $action,
             'description'=>$description
-
         ]);
     }
 }
