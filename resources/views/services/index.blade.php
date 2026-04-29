@@ -3,11 +3,9 @@
 @section('content')
 
 <div class="bg-white p-6 rounded-xl shadow">
-
-    <!-- Header -->
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold text-blue-600">
-            🏥 Liste des Services
+         Liste des Services
         </h2>
 
         <a href="{{ route('services.create') }}"
@@ -15,15 +13,11 @@
            + Ajouter
         </a>
     </div>
-
-    <!-- Success message -->
     @if(session('success'))
         <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
             {{ session('success') }}
         </div>
     @endif
-
-    <!-- Table -->
     <div class="overflow-x-auto">
         <table class="w-full border rounded-lg overflow-hidden">
 

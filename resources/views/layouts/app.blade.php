@@ -14,13 +14,11 @@
     <nav class="bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-            <!-- Logo -->
             <a href="/" class="flex items-center text-2xl font-bold text-blue-600 gap-2">
                 <img src="{{ asset('images/logo.jfif') }}" alt="CHP Logo" class="h-10 w-10 object-contain">
                 <span>SHMS CHP</span>
             </a>
 
-            <!-- Links -->
             <div class="hidden md:flex items-center space-x-6">
 
                 <a href="/" class="text-gray-600 hover:text-blue-600 transition">
@@ -34,7 +32,6 @@
                 </a>
                 @endauth
 
-                <!-- Guest -->
                 @guest
                 <a href="/login"
                    class="text-gray-600 hover:text-blue-600 transition">
@@ -47,16 +44,14 @@
                 </a>
                 @endguest
 
-                <!-- Auth -->
                 @auth
                 <div class="flex items-center space-x-3">
 
-                    <!-- User name -->
+
                     <span class="text-gray-700 font-medium">
                         {{ Auth::user()->name }}
                     </span>
 
-                    <!-- Role badge -->
                     <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs">
                         {{ Auth::user()->role }}
                     </span>
@@ -64,7 +59,6 @@
                         {{ auth()->user()->service->name ?? 'aucun Service' }}
                 </span>
 
-                    <!-- Logout -->
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit"
@@ -77,8 +71,6 @@
                 @endauth
 
             </div>
-
-            <!-- Mobile button -->
             <div class="md:hidden">
                 <button onclick="toggleMenu()" class="text-gray-600">
                     ☰
@@ -87,7 +79,6 @@
 
         </div>
 
-        <!-- Mobile menu -->
         <div id="mobileMenu" class="hidden md:hidden px-6 pb-4">
 
             <a href="/" class="block py-2 text-gray-600">Home</a>
@@ -124,7 +115,6 @@
         © {{ date('Y') }} Smart Hospital CHP - All rights reserved
     </footer>
 
-    <!-- JS -->
     <script>
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');

@@ -14,8 +14,8 @@ class Patient extends Model
         'telephone'
     ];
 
-    public function dossierMedical()
+    public function dossiersMedicaux()
     {
-        return $this->hasOne(DossierMedical::class);
+        return $this->hasMany(DossierMedical::class);
     }
 }

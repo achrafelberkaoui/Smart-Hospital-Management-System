@@ -28,4 +28,8 @@ class DossierMedical extends Model
     {
         return $this->belongsTo(Service::class);
     }
+    public function doctor()
+    {
+        return $this->belongsTo(User::class, 'doctor_id');
+    }
 }

@@ -39,7 +39,7 @@
                 <tr class="border-t hover:bg-gray-50 transition"
                 data-name="{{ strtolower($patient->name) }}"
                 data-id="{{ $patient->id }}"
-                data-serv="{{ $patient->dossierMedical->service->name ?? null}}">
+                data-serv="{{ $patient->dossiersMedicaux->first()->service->name ?? null}}">
                 <td class="border px-4 py-2">{{ $patient->id }}</td>
                 <td class="border px-4 py-2">{{ $patient->name }}</td>
                 <td class="border px-4 py-2">{{ $patient->email }}</td>
@@ -58,7 +58,7 @@
                 </td>
                 @else
                     <td class="border px-4 py-2 space-x-2">
-                    @if($patient->dossierMedical)
+                    @if($patient->dossiersMedicaux)
                         <a href="{{ route('dossier.show', $patient->id) }}"
                            class="bg-green-500 text-white px-3 py-1 rounded">
                            Voir
@@ -89,7 +89,6 @@ document.getElementById('searchInput').addEventListener('input', function() {
             row.style.display = '';
         } else {
             row.style.display = 'none';
-
         }
 
     });

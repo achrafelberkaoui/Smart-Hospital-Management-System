@@ -15,12 +15,6 @@ class PatientController extends Controller
         // if($user->role === 'reception'){
             $patients = Patient::latest()->paginate(10);
             return view('patients.index',compact('patients'));
-    //     }else{
-    // $patients = Patient::whereHas('dossierMedical', function($q) use ($user) {
-    //     $q->where('service_id', $user->service_id);
-    // })->with('dossierMedical.service')->paginate(10);        
-    // return view('patients.index',compact('patients'));
-    // }
     }
 
 

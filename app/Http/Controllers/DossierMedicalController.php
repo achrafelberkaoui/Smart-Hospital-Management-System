@@ -20,10 +20,8 @@ class DossierMedicalController extends Controller
         if(auth()->user()->role !== 'doctor'){
             abort(403);
         }
-        $patient = Patient::findOrFail($patientId);
-        if ($patient->dossierMedical) {
-            return redirect()->route('dossier.show', $patient->id);
-        }
+        $patient = Patient::with(['dossiersMedicaux.doctor','dossiersMedicaux.service','dossiersMedicaux.observations.user'])
+        ->findOrFail($patientId);
         return view('medical.create', compact('patient'));
     }
 
@@ -49,8 +47,8 @@ class DossierMedicalController extends Controller
 
     public function show($patientId)
     {
-    $patient = Patient::with('dossierMedical.service')->findOrFail($patientId);
-    return view('medical.show', compact('patient'));
+        $patient = Patient::with('dossiersMedicaux.service')->findOrFail($patientId);   
+        return view('medical.show', compact('patient'));
     }
 
     public function edit($id)

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-2xl mx-auto">
-        <!-- ERRORS -->
+
             @if(session('success'))
                 <div class="bg-green-100 text-green-700 p-3 rounded mb-4">{{ session('success') }}</div>
             @endif
@@ -22,14 +22,13 @@
     <div class="bg-white p-6 rounded-xl shadow">
 
         <h2 class="text-2xl font-bold text-blue-600 mb-6">
-            ✏️ Edit User
+            Edit User
         </h2>
 
         <form method="POST" action="{{ route('users.update', $user) }}">
             @csrf
             @method('PUT')
 
-            <!-- NAME -->
             <div class="mb-4">
                 <label class="block text-sm font-semibold mb-1">Name</label>
                 <input type="text"
@@ -38,7 +37,6 @@
                        class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-blue-500">
             </div>
 
-            <!-- EMAIL -->
             <div class="mb-4">
                 <label class="block text-sm font-semibold mb-1">Email</label>
                 <input type="email"
@@ -47,7 +45,6 @@
                        class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-blue-500">
             </div>
 
-            <!-- ROLE -->
             <div class="mb-4">
                 <label class="block text-sm font-semibold mb-1">Role</label>
                 <select name="role"
@@ -62,7 +59,6 @@
                 </select>
             </div>
 
-            <!-- SERVICES -->
             <div class="mb-5">
                 <p class="font-semibold mb-2">Services</p>
 
@@ -79,7 +75,6 @@
                 </div>
             </div>
 
-            <!-- ACTIONS -->
             <div class="flex justify-between">
 
                 <a href="{{ route('users.index') }}"

@@ -47,23 +47,23 @@
             <div>
                 <select name="doctor_id" id="doctor_select" class="w-full border p-2 rounded-lg">
 
-            @if(auth()->user()->role === 'doctor')
-                    <option value="{{ auth()->id() }}"
-                        data-service="{{ auth()->user()->service_id }}"
-                        data-service-name="{{ auth()->user()->service->name }}">
-                        {{ auth()->user()->name }}
-                    </option>
-                @else
-                    @foreach($doctors as $doctor)
-                        <option value="{{ $doctor->id }}"
-                            data-service="{{ $doctor->service_id }}"
-                            data-service-name="{{ $doctor->service->name }}"
-                            {{ old('doctor_id', $appointment->doctor_id ?? '') == $doctor->id ? 'selected' : '' }}>
-                            {{ $doctor->name }}
+                @if(auth()->user()->role === 'doctor')
+                        <option value="{{ auth()->id() }}"
+                            data-service="{{ auth()->user()->service_id }}"
+                            data-service-name="{{ auth()->user()->service->name ?? null}}">
+                            {{ auth()->user()->name }}
                         </option>
-                    @endforeach
+                    @else
+                        @foreach($doctors as $doctor)
+                            <option value="{{ $doctor->id }}"
+                                data-service="{{ $doctor->service_id }}"
+                                data-service-name="{{ $doctor->service->name }}"
+                                {{ old('doctor_id', $appointment->doctor_id ?? '') == $doctor->id ? 'selected' : '' }}>
+                                {{ $doctor->name }}
+                            </option>
+                        @endforeach
 
-                @endif
+                    @endif
                 </select>
             </div>
 
@@ -112,7 +112,6 @@
 
     </div>
 </div>
-
 
 <script>
 function updateService() {

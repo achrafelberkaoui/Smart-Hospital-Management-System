@@ -3,13 +3,11 @@
 @section('content')
 
 <h1 class="text-2xl font-bold mb-6">Dashboard Infirmier</h1>
-
             @if(session('error'))
                 <p class="bg-red-100 text-red-700 p-2 rounded mb-2">
                     {{ session('error') }}
                 </p>
             @endif
-
             @if(session('success'))
                 <p class="bg-green-100 text-green-700 p-2 rounded mb-2">
                     {{ session('success') }}
