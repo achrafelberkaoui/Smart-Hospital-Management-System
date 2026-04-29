@@ -46,11 +46,6 @@
 
     <div class="mt-10 grid md:grid-cols-4 gap-6">
 
-        <a href="{{ route('patients.index') }}"
-           class="bg-white p-6 rounded-xl shadow hover:bg-blue-50 transition">
-            <h3 class="text-lg font-semibold text-blue-600">Patients</h3>
-            <p class="text-gray-500 text-sm">Manage patients</p>
-        </a>
 
         <a href="{{ route('services.index') }}"
            class="bg-white p-6 rounded-xl shadow hover:bg-blue-50 transition">
