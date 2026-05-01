@@ -3,14 +3,12 @@
 @section('content')
 <div class="min-h-screen relative flex items-center justify-center">
 
-    <!-- Background -->
     <div class="absolute inset-0">
         <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3"
              class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/60"></div>
     </div>
 
-    <!-- Content -->
     <div class="relative z-10 text-center px-6">
 
         @if(session('error'))

@@ -4,11 +4,10 @@
 
 <div class="p-6">
 
-    <!-- TITLE -->
     <h1 class="text-3xl font-bold text-gray-800 mb-6">
         Dashboard
     </h1>
-        <!-- ERRORS -->
+
             @if(session('success'))
                 <div class="bg-green-100 text-green-700 p-3 rounded mb-4">{{ session('success') }}</div>
             @endif
@@ -26,29 +25,27 @@
             </div>
         @endif
 
-
-    <!-- STATS CARDS -->
     <div class="grid grid-cols-4 gap-6 mb-8">
 
-        <!-- TOTAL -->
         <div class="bg-white p-5 rounded-xl shadow">
             <h2 class="text-gray-500 text-sm">Total Appointments</h2>
             <p class="text-2xl font-bold mt-2">{{ $total }}</p>
         </div>
 
-        <!-- PENDING -->
         <div class="bg-yellow-100 p-5 rounded-xl shadow">
             <h2 class="text-yellow-700 text-sm">Pending</h2>
             <p class="text-2xl font-bold mt-2">{{ $pending }}</p>
         </div>
 
-        <!-- CONFIRMED -->
         <div class="bg-green-100 p-5 rounded-xl shadow">
             <h2 class="text-green-700 text-sm">Confirmed</h2>
             <p class="text-2xl font-bold mt-2">{{ $confirmed }}</p>
         </div>
+        <div class="bg-green-100 p-5 rounded-xl shadow">
+            <h2 class="text-green-700 text-sm">Completed</h2>
+            <p class="text-2xl font-bold mt-2">{{ $Completed }}</p>
+        </div>
 
-        <!-- TODAY -->
         <div class="bg-blue-100 p-5 rounded-xl shadow">
             <h2 class="text-blue-700 text-sm">Today</h2>
             <p class="text-2xl font-bold mt-2">{{ $today }}</p>
@@ -56,7 +53,6 @@
 
     </div>
 
-    <!-- RECENT APPOINTMENTS -->
     <div class="bg-white rounded-xl shadow p-6">
 
         <div class="flex justify-between items-center mb-4">
@@ -81,19 +77,15 @@
             <tbody>
                 @foreach($appointments as $appointment)
                 <tr class="border-t hover:bg-gray-50">
-
                     <td class="p-3 font-medium">
-                        {{ $appointment->patient->name }}
+                        {{$appointment->patient->name}}
                     </td>
-
                     <td class="p-3">
-                        {{ $appointment->doctor->name }}
+                        {{$appointment->doctor->name}}
                     </td>
-
                     <td class="p-3">
-                        {{ $appointment->date }} - {{ $appointment->time }}
+                        {{$appointment->date}} - {{$appointment->time}}
                     </td>
-
                     <td class="p-3">
                         @if($appointment->status == 'pending')
                             <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Pending</span>

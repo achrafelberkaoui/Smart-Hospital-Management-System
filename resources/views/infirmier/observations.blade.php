@@ -9,9 +9,8 @@
 
         <div class="flex justify-between text-sm text-gray-500 mb-2">
             <span>
-        {{ $obs->dossier->patient->name ??'Unknown' }}        
+        {{$obs->dossier->patient->name ??'Unknown' }}        
         </span>
-
         <span>
             {{ $obs->created_at->format('d/m/Y H:i') }}
         </span>

@@ -30,6 +30,7 @@ class DashboardController extends Controller
         'total' => Appointment::where('doctor_id', $user->id)->count(),
         'pending' => Appointment::where('doctor_id', $user->id)->where('status','pending')->count(),
         'confirmed' => Appointment::where('doctor_id', $user->id)->where('status','confirmed')->count(),
+        'Completed' => Appointment::where('doctor_id', $user->id)->where('status','Completed')->count(),
         'today' => Appointment::where('doctor_id', $user->id)->whereDate('date', Carbon::today())->count(),
 
         'appointments' => Appointment::where('doctor_id', $user->id)->latest()->take(5)->get()
@@ -42,6 +43,7 @@ class DashboardController extends Controller
         'total' => Appointment::count(),
         'pending' => Appointment::where('status','pending')->count(),
         'confirmed' => Appointment::where('status','confirmed')->count(),
+            'Completed' => Appointment::where('status','Completed')->count(),
         'today' => Appointment::whereDate('date', Carbon::today())->count(),
 
         'appointments' => Appointment::latest()->take(5)->get()
@@ -49,11 +51,11 @@ class DashboardController extends Controller
     }
 
     if ($user->role === 'infirmier') {
-    $appointments = Appointment::with('patient.dossierMedical.service')
+    $appointments = Appointment::with('patient.dossiersMedicaux.service')
     ->where('service_id', auth()->user()->service_id)->latest()->get()->unique('patient_id');        
-    $patients = Patient::whereHas('dossierMedical', function($q){
+    $patients = Patient::whereHas('dossiersMedicaux', function($q){
             $q->where('service_id', auth()->user()->service_id);
-        })->with('dossierMedical')->get();
+        })->with('dossiersMedicaux')->get();
     return view('infirmier.dashboard',compact('patients','appointments'));
     }
 }

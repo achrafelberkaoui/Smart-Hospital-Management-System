@@ -11,23 +11,18 @@
 
         <form action="{{ route('services.store') }}" method="POST">
             @csrf
-
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-1">
                     Nom du Service
                 </label>
-
-                <input type="text"
-                       name="name"
-                       value="{{ old('name') }}"
-                       placeholder="Ex: Cardiologie"
-                       class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text"name="name"value="{{ old('name') }}"
+                placeholder="Ex: Cardiologie"
+                class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                 @error('name')
                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
             <div class="flex justify-between">
 
                 <a href="{{ route('services.index') }}"
@@ -38,7 +33,6 @@
                 <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow">
                     Enregistrer
                 </button>
-
             </div>
         </form>
 

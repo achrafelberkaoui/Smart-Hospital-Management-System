@@ -31,28 +31,32 @@ class DatabaseSeeder extends Seeder
         'email' => 'achraf@gmail.com',
         'password' => Hash::make('achraf123'),
         'role' => 'admin',
-        'date_naissance' => '2001\10\05'
+        'date_naissance' => '2001\10\05',
+        'service_id' => 1
        ]);
        User::create([
         'name' => 'hamza',
         'email' => 'hamza@gmail.com',
         'password' => Hash::make('hamza123'),
         'role' => 'doctor',
-        'date_naissance' => '2001\10\05'
+        'date_naissance' => '2001\10\05',
+        'service_id' => 3
        ]);
        User::create([
         'name' => 'simo',
         'email' => 'simo@gmail.com',
         'password' => Hash::make('simo123'),
         'role' => 'reception',
-        'date_naissance' => '2001\10\05'
+        'date_naissance' => '2001\10\05',
+        'service_id' => 3
        ]);
        User::create([
         'name' => 'rajae',
         'email' => 'rajae@gmail.com',
         'password' => Hash::make('rajae123'),
         'role' => 'infirmier',
-        'date_naissance' => '2001\10\05'
+        'date_naissance' => '2001\10\05',
+        'service_id' => 3
        ]);
     // Service::factory(5)->create();
     // User::factory(10)->create();
