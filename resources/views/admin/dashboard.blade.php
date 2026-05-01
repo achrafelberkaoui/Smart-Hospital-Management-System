@@ -29,9 +29,9 @@
             </p>
         </div>
         <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 class="text-gray-500 text-sm">Appointments</h3>
+            <h3 class="text-gray-500 text-sm">Logs</h3>
             <p class="text-3xl font-bold text-red-600 mt-2">
-                {{ $appointments }}
+                {{ $logs }}
             </p>
         </div>
 
@@ -59,10 +59,10 @@
             <p class="text-gray-500 text-sm">Manage users & roles</p>
         </a>
 
-        <a href="#"
+        <a href="{{route('logs.index')}}"
            class="bg-white p-6 rounded-xl shadow hover:bg-blue-50 transition">
-            <h3 class="text-lg font-semibold text-blue-600">Appointments</h3>
-            <p class="text-gray-500 text-sm">Manage appointments</p>
+            <h3 class="text-lg font-semibold text-blue-600">Logs</h3>
+            <p class="text-gray-500 text-sm">Suivi des Logs</p>
         </a>
 
     </div>

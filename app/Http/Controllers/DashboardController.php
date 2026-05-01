@@ -7,6 +7,7 @@ use App\Models\Patient;
 use App\Models\Service;
 use App\Models\User;
 use Carbon\Carbon;
+use \App\Models\Log;
 
 class DashboardController extends Controller
 {
@@ -19,7 +20,7 @@ class DashboardController extends Controller
             'patients' => Patient::count(),
             'doctors' => User::where('role','doctor')->count(),
             'services' => Service::count(),
-            'appointments' => 0,
+            'logs' => Log::count(),
             'users' => User::count()
         ]);
     }
