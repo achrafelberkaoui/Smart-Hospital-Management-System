@@ -15,7 +15,7 @@ class DossierMedicalController extends Controller
     {
     }
 
-    public function create($patientId)
+    public function create(int $patientId)
     {
         if(auth()->user()->role !== 'doctor'){
             abort(403);
@@ -45,19 +45,19 @@ class DossierMedicalController extends Controller
 
     }
 
-    public function show($patientId)
+    public function show(int $patientId)
     {
         $patient = Patient::with('dossiersMedicaux.service')->findOrFail($patientId);   
         return view('medical.show', compact('patient'));
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $dossier = DossierMedical::where('service_id', auth()->user()->service_id)->findOrFail($id);
         return view('medical.edit', compact('dossier'));
     }
 
-    public function update(DossierMedicalRequest $request, $id)
+    public function update(DossierMedicalRequest $request, int $id)
     {
         if(auth()->user()->role !== 'doctor'){
             abort(403);

@@ -75,7 +75,11 @@
                     + Nouveau dossier
                 </a>
             @endif
-
+                <a href="{{ route('dossier.edit', $dossier->id) }}"
+                   class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg">
+                    Modifier
+                </a>
+                
             <div class="mt-6">
                 <h2 class="text-lg font-bold mb-3">Observations</h2>
 
