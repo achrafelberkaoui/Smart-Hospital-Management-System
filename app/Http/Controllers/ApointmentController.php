@@ -18,10 +18,10 @@ class ApointmentController extends Controller
     {
         $user = auth()->user();
         if($user->role === 'doctor'){
-            $appointments = Appointment::where('doctor_id', $user->id)->latest()->paginate(10);
-            return view('appointment.index', compact('appointments'));
-        }
+        $appointments = Appointment::where('doctor_id', $user->id)->latest()->paginate(10);
+        }else{
         $appointments = Appointment::with(['patient', 'doctor', 'service'])->latest()->paginate(10);
+        }
         return view('appointment.index', compact('appointments'));
     }
 

@@ -19,7 +19,7 @@ class AppointmentService{
             $apptEnd = $apptStart->copy()->addHour();
         
             if ($requestStart->between($apptStart, $apptEnd) || $requestEnd->between($apptStart, $apptEnd) || $apptStart->between($requestStart, $requestEnd)) {
-                throw new \Exception('Doctor already has appointment!');
+                throw new \Exception('Doctor deja un rendez-vous!');
             }
         }
 
@@ -41,7 +41,7 @@ class AppointmentService{
         ->where('id', '!=', $appointment->id)->exists();
 
         if ($exists) {
-            throw new \Exception('Doctor already busy!');
+            throw new \Exception('Doctor Non disponible!');
         }
 
         $appointment->update($data);
